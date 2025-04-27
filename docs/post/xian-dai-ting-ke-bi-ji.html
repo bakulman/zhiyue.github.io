@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html data-color-mode="light" data-dark-theme="dark" data-light-theme="light" lang="zh-CN">
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href='https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/Primer/21.0.7/primer.css' rel='stylesheet' />
+    
+    <link rel="icon" href="https://github.githubassets.com/favicons/favicon.svg"><script>
+        let theme = localStorage.getItem("meek_theme") || "light";
+        document.documentElement.setAttribute("data-color-mode", theme);
+    </script>
+<meta name="description" content="## 矩阵
+1. 矩阵和行列式没有关系
+2. 矩阵的加减法需要同形。">
+<meta property="og:title" content="线代听课笔记">
+<meta property="og:description" content="## 矩阵
+1. 矩阵和行列式没有关系
+2. 矩阵的加减法需要同形。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://bakulman.github.io/zhiyue.github.io/post/xian-dai-ting-ke-bi-ji.html">
+<meta property="og:image" content="https://github.githubassets.com/favicons/favicon.svg">
+<title>线代听课笔记</title>
+
+
+
+</head>
+<style>
+body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;padding: 45px;font-size: 16px;font-family: sans-serif;line-height: 1.25;}
+#header{display:flex;padding-bottom:8px;border-bottom: 1px solid var(--borderColor-muted, var(--color-border-muted));margin-bottom: 16px;}
+#footer {margin-top:64px; text-align: center;font-size: small;}
+
+</style>
+
+<style>
+.postTitle{margin: auto 0;font-size:40px;font-weight:bold;}
+.title-right{display:flex;margin:auto 0 0 auto;}
+.title-right .circle{padding: 14px 16px;margin-right:8px;}
+#postBody{border-bottom: 1px solid var(--color-border-default);padding-bottom:36px;}
+#postBody hr{height:2px;}
+#cmButton{height:48px;margin-top:48px;}
+#comments{margin-top:64px;}
+.g-emoji{font-size:24px;}
+@media (max-width: 600px) {
+    body {padding: 8px;}
+    .postTitle{font-size:24px;}
+}
+
+</style>
+
+
+
+
+<body>
+    <div id="header">
+<h1 class="postTitle">线代听课笔记</h1>
+<div class="title-right">
+    <a href="https://bakulman.github.io/zhiyue.github.io" id="buttonHome" class="btn btn-invisible circle" title="首页">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathHome" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+    
+    <a href="https://github.com/bakulman/zhiyue.github.io/issues/1" target="_blank" class="btn btn-invisible circle" title="Issue">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathIssue" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+    
+
+    <a class="btn btn-invisible circle" onclick="modeSwitch();" title="切换主题">
+        <svg class="octicon" width="16" height="16" >
+            <path id="themeSwitch" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+
+</div>
+</div>
+    <div id="content">
+<div class="markdown-body" id="postBody"><h2>矩阵</h2>
+<ol>
+<li>矩阵和行列式没有关系</li>
+<li>矩阵的加减法需要同形。行列式加减就是数的加减</li>
+<li>矩阵和矩阵相乘对应相乘再相加，列表=行标</li>
+<li>矩阵乘法不具有交换律和消去律，</li>
+<li>矩阵乘法具有结合律和分配律</li>
+<li>零矩阵都是0</li>
+<li>数量矩阵就是乘一个数</li>
+</ol>
+<h2>逆矩阵</h2>
+<ol>
+<li>伴随矩阵$A^*A=|A|E$,可以证明</li>
+<li>伴随矩阵的秩：阶为n的矩阵A，伴随矩阵为$A^*$
+<ol>
+<li>$r(A) =n则r(A^*)=n$</li>
+<li>$r(A)=n-1,则r(A^*)=1$</li>
+<li>$r(A)&amp;lt;n-1,则r(A^*)=0$</li>
+</ol>
+</li>
+<li>逆矩阵$|A|\neq 0$或存在$AB=E$</li>
+<li>
+$(\lambda A)^{-1}= \frac{1}{\lambda}A^{-1}$,相乘证明</li>
+<li>
+$A^{-1}= \frac{1}{|A|}A^*$求逆矩阵</li>
+<li>二阶伴随矩阵口诀：主对调，副反号</li>
+<li>伴随矩阵$A^*$是矩阵对应代数余子式的转置</li>
+<li>公式操作可交换伴随，逆，转置两两操作
+<ol>
+<li>整体操作对调$(AB)^{T}=B^{T}A^{T}$</li>
+</ol>
+</li>
+<li>由逆矩阵的定义$|A^{-1}|=  \frac{1}{|A|}$, $(kA)^{-1}= \frac{1}{k}A^{-1}$
+</li>
+<li>由伴随矩阵$A^*=|A|A^{-1}$推出
+<ol>
+<li>$(kA)^{<em>}=k^{n}|A| \frac{1}{k}  (A)^{-1} = k^{n-1}|A|(A)^{-1}=k^{n-1}A^</em>$</li>
+<li>$|A^*|=|A|^{n-1}$</li>
+<li>$(A^{<em>})^</em>=|A|^{n-2}A$</li>
+</ol>
+</li>
+</ol>
+<h2>分块矩阵与矩阵的秩</h2>
+<ol>
+<li>分块矩阵的逆矩阵
+<ol>
+<li>主对角型</li>
+<li>副对角型</li>
+<li>主不变，逆对调</li>
+<li>巧用分块为对角简化求逆矩阵</li>
+</ol>
+</li>
+<li>初等变换矩阵等价</li>
+<li>初等矩阵，互换，倍乘，倍加
+<ol>
+<li>左乘一个初等矩阵，进行相应行变换</li>
+<li>右乘</li>
+</ol>
+</li>
+<li>满秩矩阵就只可逆矩阵</li>
+<li>初等行变换求逆$(A,E)\implies (E,A^{-1})$
+<ol>
+<li>可以求解$AX=B$的解，$(A,B)\implies (E,A^{-1}B)$,这样就得到$X=A^{-1}B$</li>
+</ol>
+</li>
+</ol>
+<h3>矩阵的秩</h3>
+<ol>
+<li>矩阵的秩
+<ol>
+<li>就是非零子式的最高阶数</li>
+<li>用初等变换求</li>
+<li>转置不改变秩$r(A)=r(A^{-1})$</li>
+<li>秩不大于行和列数</li>
+<li>秩越乘越小，越拼越大，分开加最大</li>
+</ol>
+</li>
+<li>向量组，同阶向量集合</li>
+<li>矩阵的秩
+<ol>
+<li>行阶梯形矩阵的非零行行数</li>
+<li>有效方程的个数</li>
+<li>非零子式的最高阶数</li>
+<li>独立向量的个数</li>
+</ol>
+</li>
+</ol>
+<h2>向量的线性表示</h2>
+<ol>
+<li>向量的线性表示：
+<ol>
+<li>充要条件$r(\alpha_{1},\alpha_{2},\dots,\alpha_{m},\beta) = r(\alpha_{1},\alpha_{2},\dots,\alpha_{m})$被表示的可丢掉，可以被表示</li>
+<li>向量组$\alpha$和向量组$\beta$
+<ol>
+<li>
+$\alpha$可以由$\beta$线性表示：$r(\beta)=r( \beta,\alpha)$
+<ol>
+<li>$r(\alpha)\leq r(\beta)$</li>
+</ol>
+</li>
+<li>如果可以互相线性表示，那么他们等价$r(\alpha)=r(\beta)=r(\alpha,\beta)$</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>线性相关/无关
+<ol>
+<li>线性相关：向量组中存在某个向量可以由其他向量组成</li>
+<li>线性无关：向量组中向量不可以由其他向量组成</li>
+</ol>
+</li>
+<li>极大向量无关组
+<ol>
+<li>可能不唯一，可能是本身</li>
+<li>初等行变换不改变列向量之间的线性关系，可以化简求极大无关组</li>
+<li>通过求简化梯形矩阵，主元对应的列向量就是<strong>极大无关组</strong>包含的向量</li>
+</ol>
+</li>
+</ol>
+<h2>方程组的解</h2>
+<ol>
+<li>非齐次通解等于齐次+特解</li>
+<li>齐次基础解系就是任意常数k独立向量相加得到k</li>
+<li>基础解系中向量个·数
+<ol>
+<li>$n-r(A)$</li>
+<li>有$n-r(A)$</li>
+<li>自由向量的个数：<strong>自由向量</strong> = 可以由前面的向量线性表示出来的向量（就是被"控制"的向量喵）</li>
+<li>任意常数的个数</li>
+</ol>
+</li>
+<li>判断基础解系的三个条件
+<ol>
+<li>均是解</li>
+<li>向量组线性无关,没有多余向量</li>
+<li>有$n-r(A)$个</li>
+</ol>
+</li>
+<li>证$r(A)=r(A^{T}A)$<strong>两秩相等</strong>，就证，$AX=0,A^{T}AX=0$同解</li>
+<li>线性方程组的解
+<ol>
+<li>齐次：基础解系的线性组合</li>
+<li>非齐次：齐次解加特解</li>
+</ol>
+</li>
+<li>“3 阶非零幂零矩阵 A，若 $A^2 = 0$，则 $rank(A)=1$♡''</li>
+<li>幂零矩阵的秩，对于满足 $A^k = 0$ 的方阵 A（幂零矩阵），有如下性质：</li>
+</ol>
+<blockquote>
+<p>若 $A \in \mathbb{R}^{n \times n}$，且 $A^k = 0$，那么：$\text{rank}(A) \leq \frac{n}{k}$​</p>
+</blockquote>
+<h2>特征值与特征向量</h2>
+<ol>
+<li>求矩阵高次幂，使用相似对角化$A^{n} = P^{-1}\Lambda^n P$</li>
+<li>相似对角化: 存在可逆矩阵P，使得$P^{-1}AP=D$，那么A就可相似对角化，也可以说A相似于对角矩阵</li>
+<li>特征值$Ax = \lambda x$
+<ol>
+<li>那么$(A-\lambda E)x=0$由于存在非零解，那么$|A-\lambda E|=0$</li>
+<li>解得特征值$\lambda_{i}$</li>
+<li>回带到$(A-\lambda E)x=0$算到x为特征向量</li>
+</ol>
+</li>
+<li>实对称矩阵必有实特征值，而且可以正交对角化。</li>
+<li>
+<strong>对角矩阵</strong>$\Lambda$就是特征值对角位置构成的矩阵</li>
+<li>P矩阵就是<strong>特征向量</strong>组成的, 与$\Lambda$中特征值在对应位置</li>
+<li>当且仅当，（基础解系中）无关特征向量个数=矩阵的阶数（也就是构成方阵）$\implies$才可以对角化</li>
+<li>特征值性质
+<ol>
+<li>$\lambda_{1}\lambda_{2}\lambda_{3}\dots\lambda_{n}=|A|$</li>
+<li>
+$\lambda_{1}+\lambda_{2}+\dots+\lambda_{n}=tr(A)$对角值的和</li>
+</ol>
+</li>
+<li>
+<strong>特征向量</strong>的性质,特征向量不为零向量</li>
+<li>矩阵A的特征值$\lambda$，特征向量$\xi$
+<ol>
+<li>$aA+bE\implies a\lambda+b, \xi$</li>
+<li>$A^n \implies \lambda^n, \xi$</li>
+<li>$A^{-1}\implies  \frac{1}{\lambda},\xi$</li>
+<li>$A^* \implies   \frac{|A|}{\lambda},\xi$</li>
+<li>$A^T\implies \lambda$</li>
+</ol>
+</li>
+<li>相似，存在可逆矩阵$P$使$P^{-1}AP=B$则$A,B$相似
+<ol>
+<li>所有数值相等
+<ol>
+<li>$tr(A) = tr(B)$</li>
+<li>$|A|=|B|$</li>
+<li>$r(A)=r(B)$</li>
+<li>$\lambda_{A}=\lambda_{B}$</li>
+<li>$|A-\lambda E|=|B-\lambda E|$</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>
+<strong>相似对角化</strong>
+<ol>
+<li>n阶矩阵A，存在可逆矩阵P，使得$P^{-1}AP=\Lambda$,则A可相似对角化</li>
+<li>条件：有n个线性无关的特征向量</li>
+</ol>
+</li>
+</ol>
+<h2>对称矩阵的对角化</h2>
+<ol>
+<li>向量的内积就是数量积</li>
+<li>正交：内积为零，垂直</li>
+<li>施密特正交化，对于线性无关的向量$\alpha_{1},\alpha_{2},\alpha_{3}$
+<ol>
+<li>$\beta_{1}=\alpha_{1}$</li>
+<li>$\beta_{2}=\alpha_{2}-  \frac{(\alpha_{2},\beta_{1})}{(\beta_{1},\beta_{1})}\beta_{1}$</li>
+<li>$\beta_{3}=\alpha_{3}-  \frac{(\alpha_{3},\beta_{1})}{(\beta_{1},\beta_{1})}\beta_{1}-  \frac{(\alpha_{3},\beta_{2})}{\beta_{2},\beta_{2}}\beta_{2}$</li>
+</ol>
+</li>
+<li>
+<strong>正交矩阵</strong>满足：$Q=(e_{1},e_{2},e_{3})$,Q为正交矩阵$Q^TQ=QQ^T=E$,即$Q^{-1}=Q^T$，而且正交矩阵内的行向量和列向量都是两两正交的</li>
+<li>正交矩阵A的行列式为$\pm{1}$，但反过来不对</li>
+<li>对称矩阵对角化问题：
+<ol>
+<li>实对称矩阵一定可以相似正交</li>
+<li>不同特征值的特征向量一定正交</li>
+<li>重根团总支的特征向量如果不是正交，那就化为正交</li>
+<li>所有特征向量单位化</li>
+<li>拼起来正交矩阵$Q=(e_{1},e_{2},e_{3}\dots)$</li>
+</ol>
+</li>
+<li>对角化：$Q^{-1}AQ=\Lambda$</li>
+</ol>
+<h2>二次型及其标准型</h2>
+<ol>
+<li>
+$f(x_{1},x_{2},\dots,x_{n})=x^TAx$
+<ol>
+<li>A是二次型$f$的矩阵，对称唯一</li>
+<li>
+$r(A)$是二次型的秩</li>
+<li>二次型和对称矩阵一一对应</li>
+</ol>
+</li>
+<li>标准型：只有主对角线有值，也就是只含有平方项</li>
+<li>规范型：主对角线只取0，-1，1，也就是平方项系数只有1，-1，0</li>
+<li>线性变换
+<ol>
+<li>换元$x=Cy$，x用y表示，x到y的变换</li>
+<li>可逆的线性变换
+<ol>
+<li>就是C为可逆的矩阵</li>
+<li>判断C为可逆矩阵</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>合同
+<ol>
+<li>A，B都是n阶矩阵，如果存在可逆矩阵C，使$C^TAC=B$，则称A，B合同</li>
+<li>合同对角化</li>
+</ol>
+</li>
+<li>正惯性指数p=标准型正平方项的个数=正特征值的个数=规范型1的归属</li>
+<li>二次型矩阵的秩$r(A)=p+q$</li>
+<li>惯性定理：二次型经过可逆变换的线性变换
+<ol>
+<li>秩不变</li>
+<li>正负指数不变</li>
+<li>正负特征值的个数不变</li>
+</ol>
+</li>
+</ol>
+<h2>正交变换和配方法化标准型</h2>
+<h3>正交变换化标准型</h3>
+<ol>
+<li>写出二次型矩阵A</li>
+<li>求正交矩阵Q
+<ol>
+<li>求特征值</li>
+<li>求特征向量正交化</li>
+<li>单位化</li>
+<li>拼起来</li>
+</ol>
+</li>
+<li>令$x = Py$化为标准型</li>
+</ol>
+<h3>配方法</h3>
+<ol>
+<li>一次解决一项</li>
+<li>换元$y = Cx$</li>
+<li>再转化$x=Py$，即$P=C^{-1}$</li>
+<li>得到$f=k_{1}y_{1}^{2}+k_{2}y_{2}^{2}+k_{3}y_{3}^{2}$(系数和特征值同正负)</li>
+</ol>
+<p>没有平方项：</p>
+<ol>
+<li>平方差换元
+<ol>
+<li>$x_{1}=y_{1}+y_{2}$</li>
+<li>$x_{2}=y_{1}-y_{2}$</li>
+<li>$x_{3} = y_{3}$</li>
+<li>即$x = C_{1}y$</li>
+</ol>
+</li>
+<li>再求规范型$z = C_{2}y\implies f=z_{1}^{2}-$</li>
+<li>
+</li></ol>
+<h4>化规范型</h4>
+<ol>
+<li>换元为系数为$y=  \sqrt{ k }(x_{1}+x_{2})$</li>
+</ol>
+<h2>正定二次型</h2>
+<ol>
+<li>设二次型$f(x)=x^TAx$，如果对任意$x \neq 0$，都有$f(x)&gt;0$,则称$f$为正定二次型，则对称矩阵A是正定矩阵</li>
+<li>正定矩阵A的判断
+<ol>
+<li>
+$f=x^TAx\geq 0$，且当且仅当$x=0,f=0$</li>
+<li>顺序主子式均大于零
+<ol>
+<li>就是从左上角开始的子式大于零</li>
+</ol>
+</li>
+<li>正惯性指数=n或所有特征值大于0</li>
+<li>A与E合同
+<ol>
+<li>$P^TAP=E$</li>
+<li>$C^TEC=A \implies  A=C^TC$</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<h3>负定矩阵判断</h3>
+<ol>
+<li>
+$f = x^TAx \leq 0$,当且仅当$x = 0, f = 0$</li>
+<li>顺序主子式
+<ol>
+<li>奇数阶为负</li>
+<li>偶数阶为正</li>
+</ol>
+</li>
+<li>负惯性指数=n</li>
+</ol></div>
+<div style="font-size:small;margin-top:8px;float:right;"></div>
+
+<button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
+<div class="comments" id="comments"></div>
+
+</div>
+    <div id="footer"><div id="footer1">Copyright © <span id="copyrightYear"></span> <a href="https://bakulman.github.io/zhiyue.github.io">Blog Title</a></div>
+<div id="footer2">
+    <span id="runday"></span><span>Powered by <a href="https://meekdai.com/Gmeek.html" target="_blank">Gmeek</a></span>
+</div>
+
+<script>
+var now=new Date();
+document.getElementById("copyrightYear").innerHTML=now.getFullYear();
+
+if(""!=""){
+    var startSite=new Date("");
+    var diff=now.getTime()-startSite.getTime();
+    var diffDay=Math.floor(diff/(1000*60*60*24));
+    document.getElementById("runday").innerHTML="网站运行"+diffDay+"天"+" • ";
+}
+</script></div>
+</body>
+<script>
+var IconList={'sun': 'M8 10.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5zM8 12a4 4 0 100-8 4 4 0 000 8zM8 0a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0V.75A.75.75 0 018 0zm0 13a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0v-1.5A.75.75 0 018 13zM2.343 2.343a.75.75 0 011.061 0l1.06 1.061a.75.75 0 01-1.06 1.06l-1.06-1.06a.75.75 0 010-1.06zm9.193 9.193a.75.75 0 011.06 0l1.061 1.06a.75.75 0 01-1.06 1.061l-1.061-1.06a.75.75 0 010-1.061zM16 8a.75.75 0 01-.75.75h-1.5a.75.75 0 010-1.5h1.5A.75.75 0 0116 8zM3 8a.75.75 0 01-.75.75H.75a.75.75 0 010-1.5h1.5A.75.75 0 013 8zm10.657-5.657a.75.75 0 010 1.061l-1.061 1.06a.75.75 0 11-1.06-1.06l1.06-1.06a.75.75 0 011.06 0zm-9.193 9.193a.75.75 0 010 1.06l-1.06 1.061a.75.75 0 11-1.061-1.06l1.06-1.061a.75.75 0 011.061 0z', 'moon': 'M9.598 1.591a.75.75 0 01.785-.175 7 7 0 11-8.967 8.967.75.75 0 01.961-.96 5.5 5.5 0 007.046-7.046.75.75 0 01.175-.786zm1.616 1.945a7 7 0 01-7.678 7.678 5.5 5.5 0 107.678-7.678z', 'sync': 'M1.705 8.005a.75.75 0 0 1 .834.656 5.5 5.5 0 0 0 9.592 2.97l-1.204-1.204a.25.25 0 0 1 .177-.427h3.646a.25.25 0 0 1 .25.25v3.646a.25.25 0 0 1-.427.177l-1.38-1.38A7.002 7.002 0 0 1 1.05 8.84a.75.75 0 0 1 .656-.834ZM8 2.5a5.487 5.487 0 0 0-4.131 1.869l1.204 1.204A.25.25 0 0 1 4.896 6H1.25A.25.25 0 0 1 1 5.75V2.104a.25.25 0 0 1 .427-.177l1.38 1.38A7.002 7.002 0 0 1 14.95 7.16a.75.75 0 0 1-1.49.178A5.5 5.5 0 0 0 8 2.5Z', 'home': 'M6.906.664a1.749 1.749 0 0 1 2.187 0l5.25 4.2c.415.332.657.835.657 1.367v7.019A1.75 1.75 0 0 1 13.25 15h-3.5a.75.75 0 0 1-.75-.75V9H7v5.25a.75.75 0 0 1-.75.75h-3.5A1.75 1.75 0 0 1 1 13.25V6.23c0-.531.242-1.034.657-1.366l5.25-4.2Zm1.25 1.171a.25.25 0 0 0-.312 0l-5.25 4.2a.25.25 0 0 0-.094.196v7.019c0 .138.112.25.25.25H5.5V8.25a.75.75 0 0 1 .75-.75h3.5a.75.75 0 0 1 .75.75v5.25h2.75a.25.25 0 0 0 .25-.25V6.23a.25.25 0 0 0-.094-.195Z', 'github': 'M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z'};
+var utterancesLoad=0;
+
+let themeSettings={
+    "dark": ["dark","moon","#00f0ff","dark-blue"],
+    "light": ["light","sun","#ff5000","github-light"],
+    "auto": ["auto","sync","","preferred-color-scheme"]
+};
+function changeTheme(mode, icon, color, utheme){
+    document.documentElement.setAttribute("data-color-mode",mode);
+    document.getElementById("themeSwitch").setAttribute("d",value=IconList[icon]);
+    document.getElementById("themeSwitch").parentNode.style.color=color;
+    if(utterancesLoad==1){utterancesTheme(utheme);}
+}
+function modeSwitch(){
+    let currentMode=document.documentElement.getAttribute('data-color-mode');
+    let newMode = currentMode === "light" ? "dark" : currentMode === "dark" ? "auto" : "light";
+    localStorage.setItem("meek_theme", newMode);
+    if(themeSettings[newMode]){
+        changeTheme(...themeSettings[newMode]);
+    }
+}
+function utterancesTheme(theme){
+    const message={type:'set-theme',theme: theme};
+    const iframe=document.getElementsByClassName('utterances-frame')[0];
+    iframe.contentWindow.postMessage(message,'https://utteranc.es');
+}
+if(themeSettings[theme]){changeTheme(...themeSettings[theme]);}
+console.log("\n %c Gmeek last https://github.com/Meekdai/Gmeek \n","padding:5px 0;background:#02d81d;color:#fff");
+</script>
+
+<script>
+document.getElementById("pathHome").setAttribute("d",IconList["home"]);
+document.getElementById("pathIssue").setAttribute("d",IconList["github"]);
+
+
+
+function openComments(){
+    cm=document.getElementById("comments");
+    cmButton=document.getElementById("cmButton");
+    cmButton.innerHTML="loading";
+    span=document.createElement("span");
+    span.setAttribute("class","AnimatedEllipsis");
+    cmButton.appendChild(span);
+
+    script=document.createElement("script");
+    script.setAttribute("src","https://utteranc.es/client.js");
+    script.setAttribute("repo","bakulman/zhiyue.github.io");
+    script.setAttribute("issue-term","title");
+    
+    if(localStorage.getItem("meek_theme")=="dark"){script.setAttribute("theme","dark-blue");}
+    else if(localStorage.getItem("meek_theme")=="light") {script.setAttribute("theme","github-light");}
+    else{script.setAttribute("theme","preferred-color-scheme");}
+    
+    script.setAttribute("crossorigin","anonymous");
+    script.setAttribute("async","");
+    cm.appendChild(script);
+
+    int=self.setInterval("iFrameLoading()",200);
+}
+
+function iFrameLoading(){
+    var utterances=document.getElementsByClassName('utterances');
+    if(utterances.length==1){
+        if(utterances[0].style.height!=""){
+            utterancesLoad=1;
+            int=window.clearInterval(int);
+            document.getElementById("cmButton").style.display="none";
+            console.log("utterances Load OK");
+        }
+    }
+}
+
+
+
+</script>
+<script>MathJax = {tex: {inlineMath: [["$", "$"]]}};</script><script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+</html>
